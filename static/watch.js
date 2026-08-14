@@ -25,8 +25,13 @@ let pendingCandidates = [];
 
 
 function connectSocket() {
+    const protocol =
+        window.location.protocol === "https:"
+            ? "wss:"
+            : "ws:";
+
     socket = new WebSocket(
-        `ws://${window.location.host}/ws`
+        `${protocol}//${window.location.host}/ws`
     );
 
     socket.onopen = () => {
